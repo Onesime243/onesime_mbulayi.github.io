@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advancements in AI for Genomic Data Analysis | Dr. Jane Doe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+            --max-width: 1200px;
+            --transition: all 0.3s ease;
+        }
+
+        [lang="fr"] {
+            display: none;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .language-switcher {
+            display: flex;
+            margin-left: 2rem;
+        }
+
+        .language-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .language-switcher button.active {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin: 0 10px;
+        }
+
+        .hero .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .hero .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About Section */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: var(--secondary-color);
+            bottom: -10px;
+            left: 25%;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skills h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            background: var(--light-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .project-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            background: var(--light-color);
+            color: var(--secondary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .project-links a {
+            display: inline-block;
+            margin-right: 1rem;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .project-links a i {
+            margin-right: 0.3rem;
+        }
+
+        /* Blog Section */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .blog-card:hover .blog-img img {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+
+        .blog-content p {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--primary-color);
+        }
+
+        /* Publications Section */
+        .publications-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .publication-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .publication-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-authors {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-journal {
+            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .publication-links a {
+            display: inline-block;
+            margin-right: 1rem;
+            color: var(--accent-color);
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+
+        .publication-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .contact-section .section-title h2 {
+            color: white;
+        }
+
+        .contact-section .section-title h2::after {
+            background: var(--accent-color);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-details p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            margin-right: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .contact-form {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Blog Post Page */
+        .blog-post-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 0;
+        }
+
+        .blog-post-header {
+            margin-bottom: 2rem;
+        }
+
+        .blog-post-date {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .blog-post-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .blog-post-content {
+            line-height: 1.8;
+        }
+
+        .blog-post-content h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .back-to-blog:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .contact-content {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .projects-grid,
+            .blog-posts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Language Toggle */
+        .lang-en, .lang-fr {
+            transition: opacity 0.3s ease;
+        }
+
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .visible {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">Onesime<span>Mbulayi</span></a>
+            
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="language-switcher">
+                <button id="en-btn" class="active">EN</button>
+                <button id="fr-btn">FR</button>
+            </div>
+            
+            <div class="mobile-menu" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog Post Content -->
+    <main class="blog-post-container">
+        <article>
+            <div class="blog-post-header">
+                <p class="blog-post-date">June 15, 2023</p>
+                <div class="lang-en">
+                    <h1>Advancements in AI for Genomic Data Analysis</h1>
+                </div>
+                <div class="lang-fr hidden">
+                    <h1>Avancées en IA pour l'Analyse de Données Génomiques</h1>
+                </div>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI in Genomics" class="blog-post-image">
+            
+            <div class="blog-post-content">
+                <div class="lang-en">
+                    <p>The field of genomics has experienced exponential growth in data generation over the past decade. With the advent of next-generation sequencing technologies, researchers now have access to vast amounts of genomic data that hold the key to understanding complex biological systems and developing personalized medicine approaches. However, the sheer volume and complexity of this data present significant challenges for analysis and interpretation.</p>
+                    
+                    <h2>The Challenge of Genomic Data</h2>
+                    <p>Genomic datasets are characterized by their high dimensionality, with thousands to millions of features (genes, variants, etc.) measured across relatively few samples. This "large p, small n" problem makes traditional statistical approaches less effective and creates opportunities for machine learning techniques to shine.</p>
+                    
+                    <p>Recent advancements in artificial intelligence, particularly in deep learning, have shown remarkable promise in extracting meaningful patterns from genomic data. These approaches can:</p>
+                    <ul>
+                        <li>Identify non-linear relationships between genetic variants and phenotypes</li>
+                        <li>Integrate multi-omics data (genomics, transcriptomics, proteomics, etc.)</li>
+                        <li>Predict disease risk with higher accuracy than traditional methods</li>
+                        <li>Discover novel biomarkers for diagnosis and treatment</li>
+                    </ul>
+                    
+                    <h2>Transformers in Genomics</h2>
+                    <p>One of the most exciting developments has been the adaptation of transformer architectures, originally developed for natural language processing, to genomic data. These models treat DNA sequences as a language, with nucleotides as the vocabulary.</p>
+                    
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1368&q=80" alt="Transformer Model">
+                    
+                    <p>Recent studies have shown that transformer models pre-trained on large genomic datasets can be fine-tuned for specific tasks with relatively small amounts of task-specific data, mirroring the success of transfer learning in other domains.</p>
+                    
+                    <h2>Practical Applications</h2>
+                    <p>In our recent work, we applied deep learning approaches to:</p>
+                    <ol>
+                        <li>Predict cancer drug response based on tumor genomic profiles</li>
+                        <li>Identify regulatory elements in non-coding regions of the genome</li>
+                        <li>Classify rare genetic variants of unknown significance</li>
+                    </ol>
+                    
+                    <p>The results have been promising, with our models outperforming traditional approaches in several benchmarks. However, challenges remain in model interpretability and clinical implementation.</p>
+                </div>
+                
+                <div class="lang-fr hidden">
+                    <p>Le domaine de la génomique a connu une croissance exponentielle dans la génération de données au cours de la dernière décennie. Avec l'avènement des technologies de séquençage de nouvelle génération, les chercheurs ont désormais accès à de vastes quantités de données génomiques qui détiennent la clé pour comprendre les systèmes biologiques complexes et développer des approches de médecine personnalisée. Cependant, le volume et la complexité de ces données présentent des défis importants pour l'analyse et l'interprétation.</p>
+                    
+                    <h2>Le Défi des Données Génomiques</h2>
+                    <p>Les ensembles de données génomiques sont caractérisés par leur haute dimensionnalité, avec des milliers à des millions de caractéristiques (gènes, variants, etc.) mesurées sur relativement peu d'échantillons. Ce problème de "grand p, petit n" rend les approches statistiques traditionnelles moins efficaces et crée des opportunités pour les techniques d'apprentissage automatique.</p>
+                    
+                    <p>Les récentes avancées en intelligence artificielle, particulièrement en apprentissage profond, ont montré des promesses remarquables dans l'extraction de motifs significatifs à partir de données génomiques. Ces approches peuvent :</p>
+                    <ul>
+                        <li>Identifier des relations non linéaires entre variants génétiques et phénotypes</li>
+                        <li>Intégrer des données multi-omiques (génomique, transcriptomique, protéomique, etc.)</li>
+                        <li>Prédire le risque de maladie avec une précision supérieure aux méthodes traditionnelles</li>
+                        <li>Découvrir de nouveaux biomarqueurs pour le diagnostic et le traitement</li>
+                    </ul>
+                    
+                    <h2>Transformers en Génomique</h2>
+                    <p>L'un des développements les plus excitants a été l'adaptation des architectures de transformers, initialement développées pour le traitement du langage naturel, aux données génomiques. Ces modèles traitent les séquences d'ADN comme un langage, avec les nucléotides comme vocabulaire.</p>
+                    
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1368&q=80" alt="Modèle Transformer">
+                    
+                    <p>Des études récentes ont montré que les modèles transformers pré-entraînés sur de grands ensembles de données génomiques peuvent être affinés pour des tâches spécifiques avec relativement peu de données spécifiques à la tâche, reflétant le succès de l'apprentissage par transfert dans d'autres domaines.</p>
+                    
+                    <h2>Applications Pratiques</h2>
+                    <p>Dans nos travaux récents, nous avons appliqué des approches d'apprentissage profond pour :</p>
+                    <ol>
+                        <li>Prédire la réponse aux médicaments anticancéreux basée sur les profils génomiques des tumeurs</li>
+                        <li>Identifier des éléments régulateurs dans les régions non codantes du génome</li>
+                        <li>Classifier les variants génétiques rares de signification inconnue</li>
+                    </ol>
+                    
+                    <p>Les résultats ont été prometteurs, avec nos modèles surpassant les approches traditionnelles dans plusieurs benchmarks. Cependant, des défis subsistent en matière d'interprétabilité des modèles et de mise en œuvre clinique.</p>
+                </div>
+                
+                <a href="blog.html" class="back-to-blog">
+                    <div class="lang-en">
+                        <i class="fas fa-arrow-left"></i> Back to Blog
+                    </div>
+                    <div class="lang-fr hidden">
+                        <i class="fas fa-arrow-left"></i> Retour au Blog
+                    </div>
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer>
+        <div class="container footer-content">
+            <div class="lang-en">
+                <p>Onesime Mbulayi - Data Scientist & Bioinformatician</p>
+                <div class="footer-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#projects">Projects</a>
+                    <a href="index.html#publications">Publications</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <p class="copyright">© 2025 Onesime Mbulayi. All rights reserved.</p>
+            </div>
+            <div class="lang-fr hidden">
+                <p>Onesime Mbulayi - Data Scientist & Bioinformaticienne</p>
+                <div class="footer-links">
+                    <a href="index.html#about">À Propos</a>
+                    <a href="index.html#projects">Projets</a>
+                    <a href="index.html#publications">Publications</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <p class="copyright">© 2025 Onesime Mbulayi. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Same JavaScript as in index.html
+        // ...
+         // Mobile menu toggle
+         const mobileMenuBtn = document.getElementById('mobile-menu');
+        const nav = document.getElementById('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Language switcher
+        const enBtn = document.getElementById('en-btn');
+        const frBtn = document.getElementById('fr-btn');
+        const enElements = document.querySelectorAll('.lang-en');
+        const frElements = document.querySelectorAll('.lang-fr');
+        
+        enBtn.addEventListener('click', () => {
+            enBtn.classList.add('active');
+            frBtn.classList.remove('active');
+            
+            enElements.forEach(el => {
+                el.classList.remove('hidden');
+                el.classList.add('visible');
+            });
+            
+            frElements.forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('visible');
+            });
+        });
+        
+        frBtn.addEventListener('click', () => {
+            frBtn.classList.add('active');
+            enBtn.classList.remove('active');
+            
+            frElements.forEach(el => {
+                el.classList.remove('hidden');
+                el.classList.add('visible');
+            });
+            
+            enElements.forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('visible');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add shadow to header on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                document.querySelector('header').style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                document.querySelector('header').style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
